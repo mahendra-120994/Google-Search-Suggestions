@@ -1,0 +1,18 @@
+.list-item {
+  list-style: none;
+}
+.suggested-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.para {
+  color: #475569;
+  font-family: 'Roboto';
+  font-weight: bold;
+}
+.arrow-icon {
+  width: 20px;
+  cursor: pointer;
+  outline: none;
+}
