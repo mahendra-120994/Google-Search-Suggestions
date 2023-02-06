@@ -3,23 +3,30 @@ import {Component} from 'react'
 import './index.css'
 import SuggestionItem from '../SuggestionItem/index'
 
+const initialSuggestionsList = [
+  {id: 1, suggestion: 'Price of Ethereum'},
+  {id: 2, suggestion: 'Oculus Quest 2 specs'},
+  {id: 3, suggestion: 'Tesla Share Price'},
+  {id: 4, suggestion: 'Price of Ethereum today'},
+  {id: 5, suggestion: 'Latest trends in AI'},
+  {id: 6, suggestion: 'Latest trends in ML'},
+]
+
 class GoogleSuggestions extends Component {
-  state = {searchInput: ''}
+  state = {searchInput: '', suggestionsList: initialSuggestionsList}
 
   onChangeSearchInput = event => {
     this.setState({searchInput: event.target.value})
   }
 
-  //   selectSuggestedItem = (uniqueId, searchResult) => {
-  //     const {searchInput} = this.state
-  //     const selectedItem = searchResult.filter(each => each.id === uniqueId)
-  //     this.setState({searchInput: selectedItem.suggestion})
-  //   }
+  selectSuggestedItem = uniqueId => {
+    const {suggestionsList} = this.state
+    const selectedItem = suggestionsList.filter(each => each.id === uniqueId)
+    this.setState({searchInput: selectedItem[0].suggestion})
+  }
 
   render() {
-    const {suggestionsList} = this.props
-
-    const {searchInput} = this.state
+    const {searchInput, suggestionsList} = this.state
 
     const searchResult = suggestionsList.filter(each =>
       each.suggestion.toLowerCase().includes(searchInput.toLowerCase()),

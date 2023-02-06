@@ -1,12 +1,12 @@
 import './index.css'
 
 const SuggestionItem = props => {
-  const {suggestions, selectSuggestedItem, searchResult} = props
+  const {suggestions, selectSuggestedItem} = props
 
   const {suggestion, id} = suggestions
 
   const onSelect = () => {
-    // selectSuggestedItem(id, searchResult)
+    selectSuggestedItem(id)
   }
 
   return (
