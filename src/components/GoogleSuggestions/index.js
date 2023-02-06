@@ -1,32 +1,23 @@
 // Write your code here
 import {Component} from 'react'
-import './index.css'
 import SuggestionItem from '../SuggestionItem/index'
-
-const initialSuggestionsList = [
-  {id: 1, suggestion: 'Price of Ethereum'},
-  {id: 2, suggestion: 'Oculus Quest 2 specs'},
-  {id: 3, suggestion: 'Tesla Share Price'},
-  {id: 4, suggestion: 'Price of Ethereum today'},
-  {id: 5, suggestion: 'Latest trends in AI'},
-  {id: 6, suggestion: 'Latest trends in ML'},
-]
+import './index.css'
 
 class GoogleSuggestions extends Component {
-  state = {searchInput: '', suggestionsList: initialSuggestionsList}
+  state = {searchInput: ''}
 
   onChangeSearchInput = event => {
     this.setState({searchInput: event.target.value})
   }
 
-  selectSuggestedItem = uniqueId => {
-    const {suggestionsList} = this.state
-    const selectedItem = suggestionsList.filter(each => each.id === uniqueId)
-    this.setState({searchInput: selectedItem[0].suggestion})
+  selectSuggestedItem = suggestion => {
+    this.setState({searchInput: suggestion})
   }
 
   render() {
-    const {searchInput, suggestionsList} = this.state
+    const {searchInput} = this.state
+
+    const {suggestionsList} = this.props
 
     const searchResult = suggestionsList.filter(each =>
       each.suggestion.toLowerCase().includes(searchInput.toLowerCase()),
@@ -61,6 +52,7 @@ class GoogleSuggestions extends Component {
                   suggestions={eachItem}
                   selectSuggestedItem={this.selectSuggestedItem}
                   searchResult={searchResult}
+                  key={eachItem.id}
                 />
               ))}
             </ul>
